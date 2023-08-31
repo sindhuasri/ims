@@ -1,5 +1,11 @@
 package com.ims.repositories;
 
-public class WarehouseCapacityRespository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.ims.models.WarehouseCapacity;
+
+
+public interface WarehouseCapacityRespository extends JpaRepository<WarehouseCapacity, Integer>{
+
+	WarehouseCapacity findByItemIdAndWarehouseId(int itemId, int warehouseId);
 
 }

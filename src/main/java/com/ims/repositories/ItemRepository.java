@@ -1,5 +1,12 @@
 package com.ims.repositories;
 
-public class ItemRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+import com.ims.models.Item;
+
+
+@Repository
+public interface ItemRepository extends JpaRepository<Item, Integer>{
+	Item findByName( String name);
 }

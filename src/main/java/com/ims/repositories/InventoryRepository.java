@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import com.ims.models.Inventory;
+import com.ims.models.Item;
+import com.ims.models.Warehouse;
 
 @Repository
 public interface InventoryRepository extends JpaRepository<Inventory, Integer> {
@@ -18,10 +20,7 @@ public interface InventoryRepository extends JpaRepository<Inventory, Integer> {
 	@Query
 	
 	Page<Inventory> findByWarehouseId(int warehouseId, Pageable pageable);
-
-	//void saveAndFlush();
 	
-	
-	
+	Inventory findByWarehouseAndItem(Warehouse warehouse, Item item);
 
 }

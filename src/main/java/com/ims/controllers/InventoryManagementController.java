@@ -10,13 +10,20 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.ims.dtos.CreateInventoryRequestDto;
+import com.ims.dtos.DeleteInventoryRequestDto;
 import com.ims.dtos.InventoryDto;
+import com.ims.dtos.ResponseDto;
 import com.ims.dtos.SearchInventoryResponseDto;
+import com.ims.dtos.SearchWarehouseResponseDto;
+import com.ims.dtos.UpdateInventoryRequestDto;
 import com.ims.repositories.InventoryRepository;
 import com.ims.services.InventoryServiceImpl;
 
-@Controller
+
+@RestController
 @RequestMapping("/inventory")
 public class InventoryManagementController {
 
@@ -37,24 +44,32 @@ public class InventoryManagementController {
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<String> createInventory( @RequestParam int itemID, 
-			@RequestParam int warehouseId, 
-			@RequestParam int quantity) {
-
-		return ResponseEntity.status(HttpStatus.CREATED).body("New Inventory created successfully");
+	public ResponseEntity<ResponseDto> createInventory( @RequestBody CreateInventoryRequestDto createRequest) {
+		ResponseEntity<ResponseDto> result = this.inventoryService.createInventory(createRequest.getItemName(), createRequest.getWarehouseName(), createRequest.getQuantity());
+		return result;
 
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<String> updateInventory(@RequestParam int inventoryId, 
-			@RequestParam int quantity ) {
-		return ResponseEntity.status(HttpStatus.OK).body("Inventory updated successfully");
+	public ResponseEntity<ResponseDto> updateInventory(@RequestBody UpdateInventoryRequestDto updateRequest) {
+		
+		ResponseEntity<ResponseDto> result = this.inventoryService.updateInventory(updateRequest.getInventoryId(), updateRequest.getQuantity());
+		return result;
 
 	}
-
 	@DeleteMapping("/delete")
-	public void deleteInventory() {
+	public ResponseEntity<ResponseDto> deleteInventory(@RequestParam int inventoryId) {
+		
+		ResponseEntity<ResponseDto> result = this.inventoryService.deleteInventory(inventoryId);
+		return result;
 
 	}
+	@GetMapping("/warehouses")
+	public ResponseEntity<SearchWarehouseResponseDto> getAll() {
+		
+		SearchWarehouseResponseDto warehouses = this.inventoryService.getAll();
+		
+		return new ResponseEntity<SearchWarehouseResponseDto>(warehouses, HttpStatus.OK);
 
+	}
 }

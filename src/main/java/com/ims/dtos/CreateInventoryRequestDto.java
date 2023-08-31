@@ -3,35 +3,35 @@ package com.ims.dtos;
 
 public class CreateInventoryRequestDto {
 
-	private int itemId;
-	private int warehouseId;
+	private String itemName;
+	private String warehouseName;
 	private int quantity;
 	
 	public CreateInventoryRequestDto() {
 		super();
 	}
 
-	public CreateInventoryRequestDto(int itemId, int warehouseId, int quantity) {
+	public CreateInventoryRequestDto(String itemName, String warehouseName, int quantity) {
 		super();
-		this.itemId = itemId;
-		this.warehouseId = warehouseId;
+		this.itemName = itemName;
+		this.warehouseName = warehouseName;
 		this.quantity = quantity;
 	}
 
-	public int getItemId() {
-		return itemId;
+	public String getItemName() {
+		return itemName;
 	}
 
-	public void setItemId(int itemId) {
-		this.itemId = itemId;
+	public void setItemId(String itemName) {
+		this.itemName = itemName;
 	}
 
-	public int getWarehouseId() {
-		return warehouseId;
+	public String getWarehouseName() {
+		return warehouseName;
 	}
 
-	public void setWarehouseId(int warehouseId) {
-		this.warehouseId = warehouseId;
+	public void setWarehouseId(String warehouseName) {
+		this.warehouseName = warehouseName;
 	}
 
 	public int getQuantity() {
@@ -42,40 +42,6 @@ public class CreateInventoryRequestDto {
 		this.quantity = quantity;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + itemId;
-		result = prime * result + quantity;
-		result = prime * result + warehouseId;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		CreateInventoryRequestDto other = (CreateInventoryRequestDto) obj;
-		if (itemId != other.itemId)
-			return false;
-		if (quantity != other.quantity)
-			return false;
-		if (warehouseId != other.warehouseId)
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "CreateInventoryRequestDto [itemId=" + itemId + ", warehouseId=" + warehouseId + ", quantity=" + quantity
-				+ "]";
-	}
-	
 	
 	
 	

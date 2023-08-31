@@ -10,7 +10,7 @@ public class SearchWarehouseResponseDto extends PageDto {
 		return warehouses;
 	}
 
-	public void setWarehuses(List<WarehouseDto> warehouses) {
+	public void setWarehouses(List<WarehouseDto> warehouses) {
 		this.warehouses = warehouses;
 
 	}
